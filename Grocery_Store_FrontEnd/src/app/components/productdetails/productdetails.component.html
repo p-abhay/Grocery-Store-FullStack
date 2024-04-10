@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-center">
+      <div class="card" style="width: 30rem;">
+        <img class="card-img-top" src="{{productDetails.imageUrl}}" alt="Product Image">
+        <div class="card-body">
+          <h5 class="card-title">{{productDetails.name}}</h5>
+          
+          <p *ngIf="productDetails.discount == 0" class="card-text">Price: Rs.{{productDetails.price}}</p>
+          <p *ngIf="productDetails.discount != 0" class="card-text">Original Price <s>Rs.{{productDetails.price}}</s> <br>           Discounted Price: Rs.{{productDetails.price - productDetails.price * productDetails.discount/100| number:'1.0-2'}} ({{productDetails.discount}}% off)</p>
+          <div class="d-flex align-items-center mb-3">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" (click)="decrease()">-</button>
+              </div>
+              <span class="px-3 pt-2">{{cartQty}}</span>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" (click)="increase()">+</button>
+              </div>
+            </div>
+            <a  class="btn btn-primary ml-3" (click)="addToCart()" *ngIf="productDetails.availableQuantity != 0">Add to Cart</a>
+            <a  class="btn btn-danger ml-3"  *ngIf="productDetails.availableQuantity== 0" disabled>Out of Stock</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-reviews></app-reviews>

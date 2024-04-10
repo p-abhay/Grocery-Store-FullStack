@@ -1,0 +1,30 @@
+<div class="container mt-5">
+    <h2>Cart</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Details</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of cartProducts">
+          <td><img src="{{product.imageUrl}}" alt="Product Image" width="50"> {{product.name}}</td>
+          <td>{{product.description}}</td>
+          <td>{{product.availableQuantity}}</td>
+          <td>{{product.price*product.availableQuantity}}</td>
+          <td><button class="btn btn-danger btn-sm" (click)="removeFromCart(product)">Remove</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="cartProducts.length == 0">
+        Cart is Empty
+    </div>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-success" (click)="placeOrder()">Place Order</button>
+    </div>
+  </div>
+  
